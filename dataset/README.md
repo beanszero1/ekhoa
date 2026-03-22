@@ -10,5 +10,5 @@ RESERVE_SIDE的数据来源是OpenDataLab的开源数据集，晴数智慧高质
 
 ②加载到easydataset中，产生高质量的Q＆A对。
 
-最终用途是微调qwen2.5:0.5b-base。
+最终用途是微调qwen2.5:0.5b-Instruct。
 

@@ -6,7 +6,7 @@
 
 ```
 Loading model... |ggml_vulkan: Error: Shared memory size too small for matrix multiplication.
-llama_model_load: error loading model: Shared memory size too small for matrix multiplication.
+llama_model_load: error loading model: Shared memory size too small for matrix multiplication.  
 ```
 
 
