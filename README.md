@@ -1,296 +1,216 @@
-# 树莓派语音助手
+<p align="center">
+    <br>
+    <img src="https://github.com/beanszero1/ekhoa/blob/main/badge.png" width="200"/>
+    <br>
+</p>
 
-基于树莓派5的开源中文语音助手，该系统结合本地Qwen2.5模型与Dify开源法律知识库，智能识别问题类型，提供精准回答。支持离线语音识别、语音合成、OLED屏幕实时显示和语音唤醒功能。模块化设计便于扩展，适用于家庭助理、教育学习和隐私敏感的智能交互场景。
-
-
-
-**核心特性**：
-
-- 智能任务分类：自动区分法律案例与通用问题
-- 本地优先：Qwen2.5模型本地运行，保护隐私
-- 离线语音：SenseVoice语音识别，无需云端
-- 视觉反馈：OLED屏幕实时显示对话内容
-- 模块化设计：各组件可独立替换升级
-
-
-
-## 更新日志
-
-### [2026/2/27]
-
-将阿里云百炼平台提供的知识库应用服务，转换到本地服务器使用Dify开源平台部署的应用服务。
-
-添加了OLED屏幕相关模块，用于展示每次用户与AI的对话。
+<p align="center">
+  <a href="README_zh.md">中文</a> &nbsp ｜ &nbsp English &nbsp
+</p>
+<p align="center">
+<img src="https://img.shields.io/badge/python-3.7+-blue">
+<a href="https://github.com/beanszero1/ekhoa/releases"><img src="https://img.shields.io/github/v/release/beanszero1/ekhoa" alt="GitHub release"></a>
+<a href="https://github.com/beanszero1/ekhoa/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+<a href="https://github.com/beanszero1/ekhoa/pulls"><img src="https://img.shields.io/badge/PR-welcome-55EB99.svg" alt="PRs Welcome"></a>
+<p>
 
 
+<p align="center">
+  <a href="https://github.com/beanszero1/ekhoa"> 📖 GitHub Repository</a>
+<p>
 
-### [2026/2/5]
+> ⭐ If you like this project, please click the "Star" button in the upper right corner to support us. Your support is our motivation to move forward!
 
-- **接入百炼应用服务**：集成阿里百炼SDK，实现了多轮对话记忆功能
-- **智能任务分类**：新增问题分类系统，自动区分法律案例、通用问题和其他专业知识
-- **TTS流式输出**：重构语音合成模块，支持队列管理和伪流式语音输出
+## 📝 Introduction
 
+Ekhoa is an open-source Chinese voice assistant based on Raspberry Pi 5. The system uses a fine-tuned qwen2.5-0.5B-Q8_0 model specifically optimized for legal case Q&A, intelligently identifies question types, and provides accurate answers. It supports offline speech recognition, speech synthesis, OLED screen real-time display. The modular design facilitates expansion and is suitable for home assistants, educational learning, and privacy-sensitive intelligent interaction scenarios.
 
+## ✨ Key Features
 
-###   [2026/1/26]
-
-- **ASR升级**：从Vosk离线识别改为SenseVoice识别服务，支持多语言自动识别
-- **交互模式优化**：新增空格键录音控制，支持手动开始/停止录音
-- **错误处理完善**：统一日志系统，优化音频缓冲区处理流程
+- **🎯 Intelligent Task Classification**: Automatically distinguishes between legal cases and general questions
+- **🔒 Local-First**: Qwen2.5 model runs locally to protect privacy
+- **🎤 Offline Speech**: SenseVoice speech recognition, no cloud required
+- **📺 Visual Feedback**: OLED screen displays conversation content in real-time
+- **🧩 Modular Design**: Each component can be independently replaced and upgraded
 
 
 
-## 硬件要求
+## 🎉 What's New
 
-- Raspberry Pi 5 
-- 麦克风（USB麦克风，需支持16000HZ采样率）
-- 音箱或耳机
-- 至少4GB RAM
+> [!IMPORTANT]
+> **Project Renaming**
+>
+> The project has been renamed from "raspi5-qwen2.5" to "Ekhoa" to better reflect its purpose as a voice assistant.
 
-## 软件依赖
+- 🔥 **[2026.03.23]** Added support for llama.cpp deployment instead of Ollama
+- 🔥 **[2026.03.23]** Enhanced recording experience with timing display during and after audio recording
+- 🔥 **[2026.02.27]** Transitioned from Dify platform to fine-tuned qwen2.5-0.5B-Q8_0 model for legal case Q&A
+- 🔥 **[2026.02.27]** Added OLED screen module to display each user-AI conversation
+- 🔥 **[2026.02.05]** Integrated Alibaba Bailian SDK with multi-round conversation memory functionality
+- 🔥 **[2026.02.05]** Added intelligent question classification system to automatically distinguish between legal cases, general questions, and other professional knowledge
+- 🔥 **[2026.02.05]** Refactored TTS module to support queue management and pseudo-streaming speech output
+- 🔥 **[2026.01.26]** Upgraded ASR from Vosk offline recognition to SenseVoice recognition service, supporting automatic multi-language recognition
+- 🔥 **[2026.01.26]** Added spacebar recording control, supporting manual start/stop recording
+- 🔥 **[2026.01.26]** Unified logging system and optimized audio buffer processing
 
-### 系统依赖
-- Python 3.7+
-- RASPi OS 64bit
-- 中文语音包
+<details><summary>More</summary>
 
+- 🔥 **[2025.12.15]** Initial project release with basic voice assistant functionality
+</details>
 
+## 🛠️ Hardware Requirements
 
+- **Raspberry Pi 5** with at least 4GB RAM
+- **Microphone**: USB microphone supporting 16kHz sampling rate
+- **Speaker or Headphone** for audio output
+- **OLED Display** (optional, for visual feedback)
+- **Power Supply**: Official Raspberry Pi 5 power supply recommended
 
-## 环境配置步骤
+## 💻 Software Dependencies
 
-### 1. 配置中文环境
+### System Dependencies
+- **Python**: 3.13
+- **Operating System**: Raspberry Pi OS 64-bit
+- **Chinese Language Pack**: Required for Chinese speech recognition
+- **Audio Drivers**: ALSA sound system
 
-```
-# 1. 打开树莓派配置工具
+### Python Packages
+All Python dependencies are listed in `requirements.txt`. Key packages include:
+- `pyaudio` for audio input/output
+- `requests` for API communication
+- `pillow` for OLED display
+- `luma.oled` for OLED screen control
+
+## 🚀 Quick Start
+
+### 1. Configure Chinese Environment
+
+```bash
+# 1. Open Raspberry Pi configuration tool
 sudo raspi-config
 
-# 2. 选择 "Localisation Options" -> "Locale"
-# 3. 在语言列表中找到 "zh_CN.UTF-8 UTF-8"，按空格键选中
-# 4. 按回车确认，系统会开始配置中文环境
-# 5. 完成后重启树莓派
+# 2. Select "Localisation Options" -> "Locale"
+# 3. Find "zh_CN.UTF-8 UTF-8" in the language list, select with spacebar
+# 4. Press Enter to confirm, system will start configuring Chinese environment
+# 5. Reboot Raspberry Pi after completion
 sudo reboot
 
-# 6. 安装中文输入法
+# 6. Install Chinese input method
 sudo apt-get install -y fcitx-googlepinyin
 
-# 7. 再次重启使输入法生效
+# 7. Reboot again to activate input method
 sudo reboot
 ```
 
-
-
-### 2. 安装系统依赖和对应Python包
+### 2. Install System Dependencies and Python Packages
 
 ```bash
 sudo apt install espeak espeak-ng python3-pyaudio libasound2-dev
     
-# 激活虚拟环境
+# Activate virtual environment
 source ~/your_venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
-
-
-### 3. 安装和配置Ollama
+### 3. use llama.cpp
 
 ```bash
-# 方案一 树莓派上配置了代理，可以直接科学上网
-# 安装Ollama
-curl -fsSL https://ollama.com/install.sh | sh
 
-# 启动Ollama服务
-ollama serve
+cd ~/ekhoa/llama.cpp/release/bin
 
-# 在另一个终端中拉取Qwen2.5模型
-ollama run qwen2.5:1.5b
-
-# 方案二 树莓派上不能科学上网
-# 在github上的ollama的release上找一个linux-arm64的版本
-# 这里以0.13.5为例， https://github.com/ollama/ollama/releases/tag/v0.13.5
-# 通过MobaXterm或者VNC放到树莓派中,直接解压
-
-# 创建service配置文件
-sudo nano /etc/systemd/system/ollama.service
+./llama-server -m ~/your_model.gguf
 
 ```
 
 
 
-在ollama.service中复制以下内容，保存退出：
+#### Model Features
 
-```
-[Unit]
-Description=Ollama Service
-After=network-online.target
+- **Fine-tuned for Legal Q&A**: Specially optimized for Chinese legal case questions
+- **Local Execution**: Runs entirely on your Raspberry Pi, ensuring privacy
+- **Low Resource Requirements**: Q8_0 quantization balances quality and performance
+- **Smart Classification**: Automatically distinguishes between legal cases and general questions
 
-[Service]
-Type=simple
-User=pi
-Group=pi
-Environment="HOME=/home/pi"
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-ExecStart=/usr/local/bin/ollama serve
-Restart=always
-RestartSec=3
-StandardOutput=journal
-StandardError=journal
+#### How It Works
 
-[Install]
-WantedBy=multi-user.target
-```
+1. The system uses the fine-tuned qwen2.5-0.5B-Q8_0 model for all legal-related questions
+2. General questions are handled by the standard Qwen2.5 model
+3. The question classification happens automatically based on the content
 
+**Note**: The fine-tuned model is included with the project and will be used automatically when legal questions are detected.
 
+## 📖 Usage Guide
 
-使用systemd命令启动
-
-```
-# 重载systemd配置
-sudo systemctl daemon-reload
-
-# 启用开机自启
-sudo systemctl enable ollama
-
-# 启动ollama服务
-sudo systemctl start ollama
-```
-
-
-
-
-
-### 4. Dify开源平台配置
-
-Dify是一个开源LLM应用开发平台，本项目使用Dify来处理法律案例问答。系统会自动判断用户问题类型，如果是法律相关问题会转发到Dify应用进行处理。
-
-#### 部署Dify服务
-
-1. **安装Dify**  参考官方文档：https://docs.dify.ai/getting-started/install-self-hosted
-   ```bash
-   # 使用Docker Compose安装（推荐）
-   git clone https://github.com/langgenius/dify.git
-   cd dify/docker
-   docker compose up -d
-   ```
-
-2. **配置Dify应用**
-   - 访问Dify控制台  默认地址：http://localhost
-   - 创建新的对话型应用
-   - 配置知识库（上传法律文档）或使用工作流
-   - 获取应用API密钥
-
-#### 配置环境变量
-
-在树莓派上设置Dify环境变量：
+### Starting the Program
 
 ```bash
-# 设置Dify API密钥
-export DIFY_API_KEY="你的Dify应用API密钥"
+# Install system dependencies
+sudo apt install espeak espeak-ng python3-pyaudio libasound2-dev
 
-# 添加到.bashrc文件永久生效
-echo 'export DIFY_API_KEY="你的Dify应用API密钥"' >> ~/.bashrc
-
-
-# 重新加载配置
-source ~/.bashrc
-```
-
-#### 验证配置
-
-启动程序时，系统会自动检查Dify服务连接。如果配置正确，会显示"DIFY服务检查通过"。
-
-**注意**：如果不需要Dify服务或未配置环境变量，系统会自动回退到本地Qwen2.5模型处理所有问题。
-
-
-
-
-## 使用方法
-
-### 启动程序
-```bash
-# 本地服务器
-## 使用Docker部署Dify
-## 登录账户后,配置"设置"中的服务供应商
-## 配置知识库，搭建工作流应用后即可使用API_KEY访问服务
-
-# 树莓派部分
-## 确保在虚拟环境中
+# Activate virtual environment
 source ~/your_venv/bin/activate
 
-cd ~/.../raspi5-qwen2.5/SenseVoice
+# Install Python packages
+pip install -r requirements.txt
 
-## 启动API服务,第一次启动可能会自动下载SenseVoice模型的本体文件
+# Start SenseVoice API service (first start may automatically download model files)
+cd ~/path/to/ekhoa/SenseVoice
 python api.py
  
-## 运行主程序
-cd ~/.../raspi5-qwen2.5/code
+# Run main program
+cd ~/path/to/ekhoa/code
 python main.py
 ```
 
-### 交互方式
+### Interaction Methods
 
-1. 程序启动后，会进行系统服务检查
-2. 检查通过后，语音助手会提示"语音助手启动完成，随时为您服务"
-3. 直接对麦克风说话即可开始对话
-4. 说出唤醒词（默认："助手"、"你好"、"请问"、"帮助"）可以触发对话
+1. After program starts, system service check will be performed
+2. After check passes, voice assistant will prompt "Voice assistant startup complete, ready to serve you"
+3. Speak directly into microphone to start conversation
+4. Say wake words (default: "Assistant", "Hello", "Please", "Help") to trigger conversation
 
+## ⚙️ Configuration
 
+All configurations are in the `config.py` file. Main configuration parameters are as follows:
 
-### 配置说明
-
-所有配置都在 `config.py` 文件中，主要配置参数如下：
-
-#### AI模型配置
+### AI Model Configuration
 ```python
-AI_MODEL = "qwen2.5:0.5b"     # 本地Ollama模型
-OLLAMA_URL = "http://127.0.0.1:11434/api/chat"  # Ollama服务地址
+AI_MODEL = "qwen2.5-0.5B-Q8_0"     # Local  model
+OLLAMA_URL = "http://127.0.0.1:8080/api/chat"  # llama.cpp service address
 ```
 
-#### Dify服务配置
+### Speech Recognition Configuration
 ```python
-DIFY_API_BASE_URL = "http://192.168.31.147:5001"  # Dify服务地址
-DIFY_API_ENDPOINT = "/v1/chat-messages"           # Dify API端点
-DIFY_API_KEY_ENV = "DIFY_API_KEY"                 # 环境变量名称
+SENSEVOICE_API_URL = "http://127.0.0.1:7860/api/v1/asr"  # SenseVoice service address
+SAMPLE_RATE = 16000       # Audio sampling rate
 ```
 
-#### 语音识别配置
+### OLED Display Configuration
 ```python
-SENSEVOICE_API_URL = "http://127.0.0.1:7860/api/v1/asr"  # SenseVoice服务地址
-SAMPLE_RATE = 16000       # 音频采样率
+OLED_ENABLED = True                           # Whether to enable OLED display
+OLED_WIDTH = 128                              # OLED screen width
+OLED_HEIGHT = 64                              # OLED screen height
+OLED_FONT_SIZE = 10                           # Font size (10px)
+OLED_STARTUP_ANIMATION_DURATION = 2.0         # Startup animation duration (seconds)
+OLED_SHOW_BORDER = False                      # Whether to show complete border
 ```
 
-#### OLED显示配置
-```python
-OLED_ENABLED = True                           # 是否启用OLED显示
-OLED_WIDTH = 128                              # OLED屏幕宽度
-OLED_HEIGHT = 64                              # OLED屏幕高度
-OLED_FONT_SIZE = 10                           # 字体大小 (10px)
-OLED_STARTUP_ANIMATION_DURATION = 2.0         # 开机动画持续时间(秒)
-OLED_SHOW_BORDER = False                      # 是否显示完整边框
-```
+### 
+## 🔧 Troubleshooting
 
-#### 唤醒词配置
-```python
-WAKE_WORDS = ["助手", "你好", "请问", "帮助"]  # 唤醒词列表
-```
+### 1. No Audio Output
 
-**注意**：百炼SDK已从项目中移除，法律案例问答现在由Dify开源平台处理。
-
-
-
-## 故障排除
-
-### 1.没有音源输出
-
-可以在/home/你的用户名/目录下，新建.asoundrc文件，用于绑定树莓派的音源输入和输出。
+Create `.asoundrc` file in `/home/your_username/` directory to bind Raspberry Pi audio input and output.
 
 ```bash
-
 sudo nano ~/.asoundrc
+```
 
-# 输入以下内容
-# 默认播放设备   这里用的端口号是2，设备的端口号可以用arecord -l 和 aplay -l查看
+Input the following content (port number 2 is used here, device port numbers can be checked using `arecord -l` and `aplay -l`):
+
+```
+# Default playback device
 pcm.!default {
     type plug
     slave {
@@ -298,7 +218,7 @@ pcm.!default {
     }
 }
 
-# 默认录音设备
+# Default recording device
 pcm.!dsnoop {
     type dsnoop
     ipc_key 1024
@@ -307,34 +227,77 @@ pcm.!dsnoop {
     }
 }
 
-# 默认控制设备
+# Default control device
 ctl.!default {
     type hw
     card 2
 }
-
 ```
 
+### 2. Common Issues and Solutions
 
+- **Microphone not detected**: Check USB connection and run `arecord -l` to verify
+- **Speech recognition not working**: Ensure SenseVoice service is running on port 7860
+- **OLED display not showing**: Check I2C connection and install `luma.oled` library
+- **Ollama model not loading**: Verify Ollama service is running on port 11434
 
-## API扩展
+## 🧩 API Extensions
 
-项目采用模块化设计，可以轻松替换或扩展：
-- ASR模块：替换为其他语音识别引擎
-- TTS模块：替换为其他语音合成引擎
-- AI模块：替换为其他本地AI模型
+The project uses modular design, allowing easy replacement or extension:
 
+- **ASR Module**: Replace with other speech recognition engines
+- **TTS Module**: Replace with other speech synthesis engines  
+- **AI Module**: Replace with other local AI models
+- **Display Module**: Replace OLED with other display types
+- **Wake Word Module**: Customize wake word detection logic
 
+## ❤️ Community & Support
 
+Welcome to join our community to communicate with other developers and get help.
 
+We provide support through the following channels:
 
+- **GitHub Issues**: For bug reports, feature requests, and discussions
+- **GitHub Discussions**: For community discussions and Q&A
+- **Email**: For direct inquiries and support
 
+If you have questions about Ekhoa or need help with implementation, feel free to reach out!
 
+## 👷‍♂️ Contributing
 
+We welcome contributions from the community! If you want to add new features, improve documentation, or fix bugs, please:
 
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
+Please ensure your code follows the existing style and includes appropriate tests.
 
+## 📚 Citation
 
+If you use Ekhoa in your research or project, please cite our work:
 
+```bibtex
+@misc{ekhoa_2026,
+    title={{Ekhoa}: Raspberry Pi Voice Assistant with Local AI},
+    author={Beanszero1},
+    year={2026},
+    url={https://github.com/beanszero1/ekhoa}
+}
+```
 
+## ⭐ Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=beanszero1/ekhoa&type=Date)](https://star-history.com/#beanszero1/ekhoa&Date)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Qwen Team](https://github.com/Qwen) for the Qwen2.5 model
+- [llama.cpp]([ggml-org/llama.cpp: LLM inference in C/C++](https://github.com/ggml-org/llama.cpp#)) for making your local GGUF model run faster
+- [SenseVoice](https://github.com/modelscope/FunAudioLLM) for speech recognition
+- Raspberry Pi community for hardware support
