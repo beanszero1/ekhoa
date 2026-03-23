@@ -37,10 +37,6 @@ Ekhoa is an open-source Chinese voice assistant based on Raspberry Pi 5. The sys
 
 ## 🎉 What's New
 
-> [!IMPORTANT]
-> **Project Renaming**
->
-> The project has been renamed from "raspi5-qwen2.5" to "Ekhoa" to better reflect its purpose as a voice assistant.
 
 - 🔥 **[2026.03.23]** Added support for llama.cpp deployment instead of Ollama
 - 🔥 **[2026.03.23]** Enhanced recording experience with timing display during and after audio recording
