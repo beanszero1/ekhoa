@@ -292,7 +292,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Qwen Team](https://github.com/Qwen) for the Qwen2.5 model
+- [QwenLM](https://github.com/QwenLM) for the Qwen2.5 model
 - [llama.cpp](https://github.com/ggml-org/llama.cpp#) for making your local GGUF model run faster
 - [SenseVoice](https://github.com/modelscope/FunAudioLLM) for speech recognition
 - Raspberry Pi community for hardware support
