@@ -275,7 +275,7 @@ ctl.!default {
 
 ## 🙏 致谢
 
-- [Qwen Team](https://github.com/Qwen) 提供 Qwen2.5 模型
-- [llama.cpp](https://github.com/ggml-org/llama.cpp#) 让你的本地 GGUF 模型运行更快
-- [SenseVoice](https://github.com/modelscope/FunAudioLLM) 提供语音识别
+- [QwenLM](https://github.com/QwenLM) 提供Qwen2.5模型
+- [llama.cpp](https://github.com/ggml-org/llama.cpp#) 让本地部署的大模型运行效率更高
+- [SenseVoice](https://github.com/FunAudioLLM/SenseVoice) 提供离线语音识别
 - 树莓派社区提供硬件支持
