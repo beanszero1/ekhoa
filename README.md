@@ -42,7 +42,6 @@ Ekhoa is an open-source Chinese voice assistant based on Raspberry Pi 5. The sys
 - 🔥 **[2026.02.27]** Transitioned from Dify platform to fine-tuned qwen2.5-0.5B-Q8_0 model for legal case Q&A
 - 🔥 **[2026.02.27]** Added OLED screen module to display each user-AI conversation
 - 🔥 **[2026.02.05]** Integrated Alibaba Bailian SDK with multi-round conversation memory functionality
-- 🔥 **[2026.02.05]** Added intelligent question classification system to automatically distinguish between legal cases, general questions, and other professional knowledge
 - 🔥 **[2026.02.05]** Refactored TTS module to support queue management and pseudo-streaming speech output
 - 🔥 **[2026.01.26]** Upgraded ASR from Vosk offline recognition to SenseVoice recognition service, supporting automatic multi-language recognition
 - 🔥 **[2026.01.26]** Added spacebar recording control, supporting manual start/stop recording
