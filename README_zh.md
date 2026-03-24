@@ -239,17 +239,7 @@ ctl.!default {
 - **显示模块**：将 OLED 替换为其他显示类型
 - **唤醒词模块**：自定义唤醒词检测逻辑
 
-## ❤️ 社区与支持
 
-欢迎加入我们的社区，与其他开发者交流并获得帮助。
-
-我们通过以下渠道提供支持：
-
-- **GitHub Issues**：用于错误报告、功能请求和讨论
-- **GitHub Discussions**：用于社区讨论和问答
-- **电子邮件**：用于直接咨询和支持
-
-如果你对 Ekhoa 有疑问或需要实施帮助，请随时联系我们！
 
 ## 👷‍♂️ 贡献
 
@@ -286,6 +276,6 @@ ctl.!default {
 ## 🙏 致谢
 
 - [Qwen Team](https://github.com/Qwen) 提供 Qwen2.5 模型
-- [llama.cpp]([ggml-org/llama.cpp: LLM inference in C/C++](https://github.com/ggml-org/llama.cpp#)) 让你的本地 GGUF 模型运行更快
+- [llama.cpp](https://github.com/ggml-org/llama.cpp#) 让你的本地 GGUF 模型运行更快
 - [SenseVoice](https://github.com/modelscope/FunAudioLLM) 提供语音识别
 - 树莓派社区提供硬件支持
