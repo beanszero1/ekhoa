@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekhoa 语音助手</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-microphone-alt"></i>
+                    <span>Ekhoa</span>
+                </div>
+            </div>
+            
+            <button class="new-chat-btn" id="newChatBtn">
+                <i class="fas fa-plus"></i>
+                新建对话
+            </button>
+            
+            <div class="conversations-list" id="conversationsList">
+                <!-- 对话列表将动态加载 -->
+            </div>
+            
+            <div class="sidebar-footer">
+<div class="service-status">
+    <div class="status-item">
+        <span class="status-dot" id="sensevoiceStatus"></span>
+        <span>SenseVoice</span>
+    </div>
+    <div class="status-item">
+        <span class="status-dot" id="llamacppStatus"></span>
+        <span>llama.cpp</span>
+    </div>
+</div>
+            </div>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部栏 -->
+            <header class="header">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="current-conversation-title" id="currentTitle">新对话</h1>
+                <div class="header-actions">
+                    <button class="clear-btn" id="clearBtn" title="清空所有对话">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 聊天区域 -->
+            <div class="chat-container" id="chatContainer">
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h2>欢迎使用 Ekhoa 语音助手</h2>
+                    <p>我可以帮助你解答法律问题、进行日常对话</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-gavel"></i>
+                            <span>法律问答</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-comments"></i>
+                            <span>日常对话</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-microphone"></i>
+                            <span>语音输入</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="messages-container" id="messagesContainer">
+                    <!-- 消息将动态加载 -->
+                </div>
+            </div>
+            
+            <!-- 输入区域 -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea 
+                        class="message-input" 
+                        id="messageInput" 
+                        placeholder="输入消息..." 
+                        rows="1"
+                    ></textarea>
+                    <div class="input-actions">
+                        <button class="voice-btn" id="voiceBtn" title="语音输入">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="send-btn" id="sendBtn" title="发送">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 语音录制提示 -->
+                <div class="recording-indicator" id="recordingIndicator">
+                    <div class="recording-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="recording-text">正在录音...</span>
+                    <span class="recording-time" id="recordingTime">00:00</span>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <span>处理中...</span>
+    </div>
+    
+    <!-- Toast 提示 -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
