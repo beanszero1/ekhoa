@@ -1,8 +1,9 @@
 <p align="center">
     <br>
-    <img src="https://github.com/beanszero1/ekhoa/blob/main/badge.png" width="200"/>
+    <img src="https://github.com/beanszero1/ekhoa/blob/main/badge.png" width="800"/>
     <br>
 </p>
+
 
 <p align="center">
   <a href="README_zh.md">中文</a> &nbsp ｜ &nbsp English &nbsp
@@ -32,13 +33,7 @@ Ekhoa is an open-source Chinese voice assistant based on Raspberry Pi 5. The sys
 - **📺 Visual Feedback**: OLED screen displays conversation content in real-time
 - **🧩 Modular Design**: Each component can be independently replaced and upgraded
 
-## 📸 Screenshots
 
-<div align="center">
-  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example1.png" width="300"/>
-  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example2.png" width="300"/>
-  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example3.png" width="300"/>
-</div>
 
 ## 🎉 What's New
 
@@ -268,6 +263,7 @@ The project uses modular design, allowing easy replacement or extension:
   <br><br>
   <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example3.png" width="800"/>
 </div>
+
 
 ## ❤️ Community & Support
 
