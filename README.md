@@ -262,11 +262,11 @@ The project uses modular design, allowing easy replacement or extension:
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example1.png" width="700"/>
+  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example1.png" width="800"/>
   <br><br>
-  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example2.png" width="700"/>
+  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example2.png" width="800"/>
   <br><br>
-  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example3.png" width="700"/>
+  <img src="https://github.com/beanszero1/ekhoa/blob/main/pic/example3.png" width="800"/>
 </div>
 
 ## ❤️ Community & Support
