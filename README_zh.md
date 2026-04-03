@@ -122,7 +122,7 @@ pip install -r requirements.txt
 cd ~/ekhoa/llama.cpp/release/bin
 
 ./llama-server -m ~/your_model.gguf
-
+# 注意github上不支持100M以上的文件,所以model文件需要手动到/ekhoa/model/README.md指定的MODELSCOPE URL下载.
 ```
 
 
