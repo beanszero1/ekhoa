@@ -121,6 +121,7 @@ cd ~/ekhoa/llama.cpp/release/bin
 
 ./llama-server -m ~/your_model.gguf
 
+# Please note that GitHub does not support files larger than 100 MB, so you will need to manually download the model file from the MODELSCOPE URL specified in /ekhoa/model/README.md.
 ```
 
 
