@@ -205,3 +205,4 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+model/qwen2.5-0.5B-lora-Q8_0.gguf
