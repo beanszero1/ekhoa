@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import os
-import time
 import sys
+import time
 
 import config
 import model_api
 import asr
 import tts
 import oled_display
-import sys
-import os
 
 # 添加utils目录到Python路径，以便导入子目录中的模块
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'utils'))
@@ -27,12 +25,7 @@ def check_services():
     """检查所需服务是否可用"""
     print("检查系统服务...")
     logger.info("检查系统服务...")
-    
-    # 使用check_utils检查所有服务
-    if not check_utils.check_all_services():
-        return False
-    
-    return True
+    return check_utils.check_all_services()
 
 
 def _oled_tts_stream_callback(sentence):
@@ -51,15 +44,6 @@ def _oled_tts_stream_callback(sentence):
         
         # 添加到TTS队列进行语音合成
         tts.speak_stream(sentence.strip())
-
-
-def _tts_stream_callback(sentence):
-    """TTS流式回调函数（保持向后兼容）"""
-    _oled_tts_stream_callback(sentence)
-
-
-# 现在使用百炼SDK内置的session_id机制实现多轮对话
-# 不再需要本地存储对话历史
 
 
 def process_recorded_audio():
@@ -95,12 +79,7 @@ def process_recorded_audio():
             sys.stdout.flush()
             
             # 使用集成了OLED显示的回调函数
-            reply = model_api.ask_ai(user_text, use_stream_callback=_oled_tts_stream_callback, conversation_history=None)
-            
-            # 注意：现在不输出回复文本，因为TTS线程已经输出了
-            # 只有当ask_ai不使用回调时（理论上不会发生），才需要输出
-            if reply and reply.strip():
-                pass
+            model_api.ask_ai(user_text, use_stream_callback=_oled_tts_stream_callback, conversation_history=None)
     else:
         sys.stdout.write("\r未识别到有效语音\n")
         sys.stdout.flush()
@@ -113,8 +92,7 @@ def main():
     # 初始化OLED显示（如果启用）
     if config.OLED_ENABLED:
         try:
-            # 获取OLED实例，触发开机动画
-            oled = oled_display.get_oled_instance()
+            oled_display.get_oled_instance()
             print("OLED初始化完成")
         except Exception as e:
             logger.error(f"OLED初始化失败: {e}")
@@ -128,7 +106,7 @@ def main():
     try:
         while not config.exit_flag:
             # 检查键盘输入
-            if keyboard_listener.check_key_press(old_settings):
+            if keyboard_listener.check_key_press():
                 break
                 
             # 检查是否有待处理的录音
@@ -168,8 +146,7 @@ if __name__ == "__main__":
     # 先初始化OLED（如果启用），这样程序启动就能立即显示动画
     if config.OLED_ENABLED:
         try:
-            # 获取OLED实例，这会触发开机动画
-            oled = oled_display.get_oled_instance()
+            oled_display.get_oled_instance()
             print("OLED开机动画显示中...")
         except Exception as e:
             logger.error(f"OLED初始化失败: {e}")
