@@ -20,7 +20,6 @@ SENSEVOICE_TIMEOUT = 30  # API请求超时时间（秒）
 SAMPLE_RATE = 16000  # 音频采样率
 FRAMES_PER_BUFFER = 4000  # 音频缓冲区大小
 CHANNELS = 1  # 音频通道数
-FORMAT = "pyaudio.paInt16"  # 音频格式
 
 # --- TTS配置 ---
 TTS_RATE = 200  # 语音合成语速
@@ -28,7 +27,6 @@ TTS_VOLUME = 0.8  # 语音合成音量
 
 # --- AI模型配置 ---
 OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
-OLLAMA_TAGS_URL = "http://127.0.0.1:11434/api/tags"
 AI_MODEL = "qwen2.5:0.5b"     
 AI_TIMEOUT = 60  # AI请求超时时间（秒）
 SERVICE_CHECK_TIMEOUT = 5  # 服务检查超时时间
