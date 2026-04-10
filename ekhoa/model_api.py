@@ -5,6 +5,7 @@ AI模型API模块
 """
 
 import os
+import json
 import requests
 import config
 
@@ -166,28 +167,36 @@ def ask_ai_dify_stream(text, conversation_history=None):
         yield f"DIFY API调用失败: {str(e)}"
 
 
-def reset_dify_session():
-    """
-    重置DIFY会话
-    用于开始新的对话或处理错误后重置
-    """
-    global _dify_conversation_id
-    _dify_conversation_id = None
-    return "DIFY会话已重置"
+def _build_general_messages(text, conversation_history=None):
+    """构建通用问答消息列表。"""
+    messages = [{'role': 'system', 'content': config.SYSTEM_PROMPT}]
+
+    if conversation_history:
+        recent_history = conversation_history[-20:]  # 最近10轮（20条消息）
+        for msg in recent_history:
+            role = 'user' if msg['role'] == 'user' else 'assistant'
+            messages.append({'role': role, 'content': msg['content']})
+
+    messages.append({'role': 'user', 'content': text})
+    return messages
 
 
-def ask_ai_general(text):
+def ask_ai_general(text, conversation_history=None):
     """
     处理通用问题（使用原有qwen3逻辑）
+    支持对话历史上下文
+    
+    Args:
+        text: 当前用户问题
+        conversation_history: 对话历史列表，格式 [{'role': 'user/assistant', 'content': '...'}]
     """
     try:
+        messages = _build_general_messages(text, conversation_history)
+        
         # 尝试请求本地 LLM
         response = requests.post(config.OLLAMA_URL, json={
             "model": config.AI_MODEL,
-            "messages": [
-                {'role': 'system', 'content': config.SYSTEM_PROMPT},
-                {'role': 'user', 'content': text}
-            ],
+            "messages": messages,
             "stream": False
         }, timeout=config.AI_TIMEOUT)
         
@@ -204,6 +213,59 @@ def ask_ai_general(text):
         return "AI响应超时，请稍后再试"
     except Exception as e:
         return f"处理请求时出现错误: {str(e)}"
+
+
+def ask_ai_general_stream(text, conversation_history=None):
+    """
+    流式处理通用问题，按文本片段返回模型输出。
+
+    Args:
+        text: 当前用户问题
+        conversation_history: 对话历史列表
+
+    Yields:
+        str: 模型返回的文本片段
+    """
+    messages = _build_general_messages(text, conversation_history)
+
+    try:
+        with requests.post(
+            config.OLLAMA_URL,
+            json={
+                "model": config.AI_MODEL,
+                "messages": messages,
+                "stream": True
+            },
+            timeout=config.AI_TIMEOUT,
+            stream=True
+        ) as response:
+            if response.status_code != 200:
+                raise RuntimeError("抱歉，AI服务暂时不可用")
+
+            for line in response.iter_lines(decode_unicode=True):
+                if not line:
+                    continue
+
+                try:
+                    result = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+
+                if result.get('error'):
+                    raise RuntimeError(result['error'])
+
+                chunk = result.get('message', {}).get('content', '')
+                if chunk:
+                    yield chunk
+
+    except requests.exceptions.ConnectionError as exc:
+        raise RuntimeError("无法连接到AI服务，请检查Ollama是否启动") from exc
+    except requests.exceptions.Timeout as exc:
+        raise RuntimeError("AI响应超时，请稍后再试") from exc
+    except RuntimeError:
+        raise
+    except Exception as exc:
+        raise RuntimeError(f"处理请求时出现错误: {str(exc)}") from exc
 
 
 def ask_ai(text, use_stream_callback=None, conversation_history=None):
