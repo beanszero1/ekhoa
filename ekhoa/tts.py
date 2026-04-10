@@ -5,15 +5,15 @@
 """
 
 import pyttsx3
-import sys
 import io
 import queue
+import sys
 import threading
 import time
 
-# 添加utils目录到Python路径，以便导入子目录中的模块
-import sys
 import os
+
+# 添加utils目录到Python路径，以便导入子目录中的模块
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'utils'))
 import logging_utils
 
