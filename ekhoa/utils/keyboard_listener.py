@@ -11,17 +11,15 @@ import tty
 
 import config
 import asr
-import timing_utils
 
 def setup_keyboard_listener():
-
     # 保存当前终端设置
     old_settings = termios.tcgetattr(sys.stdin)
     # 设置非阻塞模式
     tty.setraw(sys.stdin.fileno())
     return old_settings
 
-def check_key_press(old_settings):
+def check_key_press():
     """检查是否有按键输入，检测q键退出和空格键切换录音状态"""
     # 检查是否有键盘输入
     if select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], []):
@@ -41,16 +39,11 @@ def check_key_press(old_settings):
             if new_recording_flag:
                 # 开始录音：清空缓冲区
                 config.audio_buffer.clear()
-                # 重置计时数据，开始新的计时周期
-                timing_utils.reset_timing_data()
-                # 记录开始录音时间戳
-                timing_utils.record_timestamp("start_recording")
                 sys.stdout.write('\r\n[空格键按下] 开始录音...\r\n')
                 sys.stdout.flush()
                 asr.reset_recognizer()  # 重置识别器，开始新的录音
             else:
                 # 停止录音：标记需要处理缓冲区
-                timing_utils.record_timestamp("end_recording")
                 sys.stdout.write('\r\n[空格键按下] 停止录音，正在处理...\r\n')
                 sys.stdout.flush()
                 config.processing_pending = True
