@@ -4,10 +4,8 @@
 提供系统服务检查功能
 """
 
-import os
 import requests
 import logging_utils
-
 import config
 
 # 设置日志
@@ -58,10 +56,6 @@ def check_llamacpp_service():
             return False, f"llama.cpp服务返回HTTP {response.status_code}", []
     except Exception as e:
         return False, f"无法连接llama.cpp服务: {e}", []
-
-
-
-
 
 def check_all_services():
     """
